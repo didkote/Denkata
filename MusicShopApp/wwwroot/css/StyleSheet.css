@@ -1,0 +1,8 @@
+﻿.carousel-item img {
+    width: 800px; /* Fixed width */
+    height: 500px; /* Fixed height */
+    object-fit: cover; /* Ensures images fit without distortion */
+    display: block;
+    margin: 0 auto;
+    transition: opacity 1s ease-in-out; /* Smooth transition */
+}

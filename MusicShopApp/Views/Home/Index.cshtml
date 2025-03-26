@@ -1,0 +1,274 @@
+﻿@{
+    ViewData["Title"] = "Welcome to Vinyl & CD Shop";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/mycsstheme.css" asp-append-version="true">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinyl & CD Shop</title>
+ @*    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"> *@
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 30px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .slideshow-container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .side-images {
+            display: flex;
+            justify-content:center;
+            
+            gap: 15px;
+        }
+
+            .side-images img {
+                width: 70%;
+                border-radius: 10px;
+            }
+
+        .content-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Welcome to Vinyl & CD Shop</h1>
+        <p>Find your favorite albums on classic vinyl and CDs!</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="content-wrapper">
+            <!-- Left Side Static Images -->
+        @*     <div class="side-images">
+                <img src="~/images/fallen.png" alt="CD Collection">
+                <img src="~/images/vinyl_display.jpg" alt="Vinyl Display">
+            </div>
+ *@
+            <!-- Slideshow -->
+
+            @* <table align="center">
+                <tr>
+                    <td align="center">
+                        <a asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Metal">
+                            <img src="~/images/fallen.png" alt="Metal" width="200">
+                            <p>Metal</p>
+                        </a>
+                    </td>
+                    <td align="center">
+                        <a asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Rap">
+                            <img src="~/images/crazystory.jpg" alt="Rap" width="200">
+                            <p>Rap</p>
+                        </a>
+                    </td>
+                    <td align="center">
+                        <a asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Pop">
+                            <img src="~/images/famemonster.png" alt="Pop" width="200">
+                            <p>Pop</p>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="center">
+                        <table>
+                            <tr>
+                                <td align="center">
+                                    <a asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Classic">
+                                        <img src="~/images/famemonster.png" alt="Classic" width="200">
+                                        <p>Classic</p>
+                                    </a>
+                                </td>
+                                <td align="center">
+                                    <a asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Rock">
+                                        <img src="~/images/famemonster.png" alt="Rock" width="200">
+                                        <p>Rock</p>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table> *@
+
+            <style>
+                .slideshow-container {
+                    position: relative;
+                    width: 200px;
+                    height: 200px; /* Adjust as needed */
+                    margin: auto;
+                }
+
+                .slide {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    display: none;
+                }
+
+                    .slide img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+
+                .genre-container {
+                    text-align: center;
+                    margin: 20px;
+                }
+
+                .genre-table {
+                    margin: auto;
+                }
+
+                p {
+                    margin-top: 10px;
+                    font-weight: bold;
+                }
+            </style>
+
+            <table align="center" class="genre-table">
+                <tr>
+                    <td class="genre-container">
+                        <a href="/Product/Index?searchStringBrandName=Metal" class="genre-link">
+                            <div class="slideshow-container" data-genre="Metal">
+                                <div class="slide"><img src="/images/fallen.png" alt="Metal 1"></div>
+                                <div class="slide"><img src="/images/time.jpg" alt="Metal 2"></div>
+                                <div class="slide"><img src="/images/slipknot.jpg" alt="Metal 3"></div>
+                            </div>
+                            <p>Metal</p>
+                        </a>
+                    </td>
+                    <td class="genre-container">
+                        <a href="/Product/Index?searchStringBrandName=Rap" class="genre-link">
+                            <div class="slideshow-container" data-genre="Rap">
+                                <div class="slide"><img src="/images/crazystory.jpg" alt="Rap 1"></div>
+                                <div class="slide"><img src="/images/scirena.jpg" alt="Rap 2"></div>
+                                <div class="slide"><img src="/images/gio pika.jpg" alt="Rap 3"></div>
+                            </div>
+                            <p>Rap</p>
+                        </a>
+                    </td>
+                    <td class="genre-container">
+                        <a href="/Product/Index?searchStringBrandName=Pop" class="genre-link">
+                            <div class="slideshow-container" data-genre="Pop">
+                                <div class="slide"><img src="/images/famemonster.png" alt="Pop 1"></div>
+                                <div class="slide"><img src="/images/oneOftheBoys.png" alt="Pop 2"></div>
+                                <div class="slide"><img src="/images/dangerous.png" alt="Pop 3"></div>
+                            </div>
+                            <p>Pop</p>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="center">
+                        <table>
+                            <tr>
+                                <td class="genre-container">
+                                    <a href="/Product/Index?searchStringBrandName=Rock" class="genre-link">
+                                        <div class="slideshow-container" data-genre="Rock">
+                                            <div class="slide"><img src="/images/tdghuman.jpg" alt="Rock 1"></div>
+                                            <div class="slide"><img src="/images/a tale.jpg" alt="Rock 2"></div>
+                                            <div class="slide"><img src="/images/dplusg.jpg" alt="Rock 3"></div>
+                                        </div>
+                                        <p>Rock</p>
+                                    </a>
+                                </td>
+                                <td class="genre-container">
+                                    <a href="/Product/Index?searchStringBrandName=Classic" class="genre-link">
+                                        <div class="slideshow-container" data-genre="Classic">
+                                            <div class="slide"><img src="/images/sandra.png" alt="Classic 1"></div>
+                                            <div class="slide"><img src="/images/scarface.png" alt="Classic 2"></div>
+                                            <div class="slide"><img src="/images/vicecity.png" alt="Classic 3"></div>
+                                        </div>
+                                        <p>Classic</p>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <script>
+                function startSlideshow(container) {
+                    let slides = container.getElementsByClassName("slide");
+                    let index = 0;
+
+                    function showNextSlide() {
+                        for (let slide of slides) {
+                            slide.style.display = "none";
+                        }
+                        slides[index].style.display = "block";
+                        index = (index + 1) % slides.length;
+                        setTimeout(showNextSlide, 2000);
+                    }
+
+                    if (slides.length > 0) {
+                        slides[0].style.display = "block";
+                        setTimeout(showNextSlide, 2000);
+                    }
+                }
+
+                document.addEventListener("DOMContentLoaded", function () {
+                    let slideshows = document.querySelectorAll(".slideshow-container");
+                    slideshows.forEach(startSlideshow);
+                });
+            </script>
+
+
+            
+        <br>
+        <br>
+      @*   <table align="center">
+            <tr>
+                <td align="center">
+                    <a asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Metal">
+                        <img src="~/images/fallen.png" alt="Metal" width="200">
+                        <p>Metal</p>
+                    </a>
+                </td>
+                <td align="center">
+                    <a asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Rap">
+                        <img src="~/images/crazystory.jpg" alt="Rap" width="200">
+                        <p>Rap</p>
+                    </a>
+                </td>
+                <td align="center">
+                    <a asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Pop">
+                        <img src="~/images/famemonster.png" alt="Pop" width="200">
+                        <p>Pop</p>
+                    </a>
+                </td>
+            </tr>
+        </table> *@
+
+      
+
+     </div>
+    @* </div> *@
+@* 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> *@
+</body>
+</html>

@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-MusicShopApp-e0f44631-b59b-4c3d-8d01-e3c5281682b8</UserSecretsId>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.27" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.35" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.35" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.24" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.35" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.35">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.18" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\MusicShopApp.Core\MusicShopApp.Core.csproj" />
+	  <ProjectReference Include="..\MusicShopApp.Infrastructure\MusicShopApp.Infrastructure.csproj" />
+	</ItemGroup>
+
+</Project>

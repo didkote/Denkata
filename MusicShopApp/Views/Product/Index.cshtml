@@ -1,0 +1,179 @@
+﻿@model IEnumerable<MusicShopApp.Models.Product.ProductIndexVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Products</h1>
+
+@if ((this.User.Identity.IsAuthenticated) && (this.User.IsInRole("Administrator")))
+{
+    <p>
+        <a asp-action="Create" class="btn btn-warning">Create New</a>
+    </p>
+}
+
+<form asp-controller="Product" asp-action="Index" method="get">
+    <p>
+        Brand: <input type="text" name="searchStringBrandName" />
+        Category: <input type="text" name="searchStringCategoryName" />
+        Product Name: <input type="text" name="searchStringProductName" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<div class="product-container">
+    @foreach (var item in Model)
+    {
+        <div class="product-card">
+            <a asp-action="Details" asp-route-id="@item.Id">
+                <img src="@Html.DisplayFor(modelItem => item.Picture)" alt="Image">
+            </a>
+            <h3>@Html.DisplayFor(modelItem => item.ProductName)</h3>
+            <p><strong>Brand:</strong> @Html.DisplayFor(modelItem => item.BrandName)</p>
+            <p><strong>Category:</strong> @Html.DisplayFor(modelItem => item.CategoryName)</p>
+            <p>@Html.DisplayFor(modelItem => item.Description)</p>
+            <p><strong>Quantity:</strong> @Html.DisplayFor(modelItem => item.Quantity)</p>
+            <p><strong>Price:</strong> $@Html.DisplayFor(modelItem => item.Price)</p>
+            <p class="text-success"><strong>Discount:</strong> @Html.DisplayFor(modelItem => item.Discount) %</p>
+
+            <div class="buttons">
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Details</a>
+
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    <a asp-action="Create" asp-controller="Order" asp-route-id="@item.Id" class="btn btn-warning">Order</a>
+                }
+
+                @if ((this.User.Identity.IsAuthenticated) && (this.User.IsInRole("Administrator")))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+@section Styles {
+    <style>
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            width: 250px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            background: white;
+            text-align: center;
+            transition: transform 0.2s ease-in-out;
+        }
+
+            .product-card:hover {
+                transform: scale(1.05);
+            }
+
+            .product-card img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 5px;
+            }
+
+            .product-card h3 {
+                font-size: 18px;
+                margin: 10px 0;
+            }
+
+            .product-card p {
+                margin: 5px 0;
+            }
+
+            .product-card .buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                margin-top: 10px;
+            }
+
+                .product-card .buttons a {
+                    text-decoration: none;
+                    padding: 8px;
+                    border-radius: 5px;
+                    font-weight: bold;
+                    display: block;
+                }
+
+        .btn-success {
+            background: linear-gradient(to right, #28a745, #218838);
+            color: white;
+            border: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+            .btn-success:hover {
+                background: linear-gradient(to right, #218838, #1e7e34);
+                transform: scale(1.05);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+        .btn-warning {
+            background: linear-gradient(to right, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+            .btn-warning:hover {
+                background: linear-gradient(to right, #ff1493, #c71585);
+                transform: scale(1.05);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+        .btn-primary {
+            background: linear-gradient(to right, #007bff, #0056b3);
+            color: white;
+            border: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+            .btn-primary:hover {
+                background: linear-gradient(to right, #0056b3, #003f7f);
+                transform: scale(1.05);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+        .btn-danger {
+            background: linear-gradient(to right, #dc3545, #c82333);
+            color: white;
+            border: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+            .btn-danger:hover {
+                background: linear-gradient(to right, #c82333, #a71d2a);
+                transform: scale(1.05);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+        .buttons a {
+            display: inline-block;
+            text-align: center;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+    </style>
+}
